@@ -1,17 +1,19 @@
-var screen1 = document.querySelector(".container .screen");
-var buttons = document.querySelectorAll(".container .button-container button");
-buttons.forEach(button => {
-    button.addEventListener("click", () => {
+var screen = document.querySelector('.screen');
+var buttons = document.querySelectorAll('.buttons button');
 
-        if (button.innerHTML === "=") {
-            let result = eval(screen1.innerHTML);
-            screen1.innerHTML = result;
-        } else if (screen1.innerHTML === "0") {
-            screen1.innerHTML = button.innerHTML;
-        } else if (button.innerHTML === "C") {
-            screen1.innerHTML = "0";
-        } else {
-            screen1.innerHTML += button.innerHTML;
+buttons.forEach((but) => {
+    but.addEventListener('click', () => {
+    var buttxt = but.textContent.trim();
+    if (buttxt === 'C') {
+        screen.textContent = '0';
+    } else if (buttxt === '=') {
+        try {
+        screen.textContent = eval(screen.textContent);
+        } catch {
+        screen.textContent = 'Error';
         }
+    } else {
+        screen.textContent += buttxt; 
+    }
     });
-})
+});
